@@ -45,7 +45,7 @@ abstract class ComponentAbstract {
      * @param      array  $attributes  The attributes
      */
     public static function render(array $settings = [], array $attributes = []) {
-        $class = get_called_class();
+        $class     = get_called_class();
         $component = new $class($settings, $attributes);
         static::loadAssets();
         $component->setDefaults();
@@ -79,19 +79,16 @@ abstract class ComponentAbstract {
         // if the id is empty, generate one
         if (empty($this->id)) {
             $this->id = uniqid('auto-id-');
-            $attributes['id'] = $this->id;
         }
 
         // if class is empty, set it to an empty string
         if (empty($this->class)) {
             $this->class = '';
-            $attributes['class'] = '';
         }
 
         // if data is empty, set it to an empty array
         if (empty($this->data)) {
             $this->data = [];
-            $attributes['data'] = [];
         }
 
         $this->attribute_names = array_keys(json_decode(json_encode($this), true));
@@ -136,16 +133,23 @@ abstract class ComponentAbstract {
      * @return     string
      */
     protected function attributes(): string {
-        $attributes = "";
+        $attributes = '';
         foreach ($this->attribute_names as $name) {
-            if ($name === 'data') continue;
-            if (empty($this->$name)) continue;
+            if ($name === 'data') {
+                continue;
+            }
+            if (empty($this->$name)) {
+                continue;
+            }
             $attributes .= $this->attribute($name, $this->$name);
         }
         foreach ($this->data as $name => $value) {
-            if (empty($value)) continue;
-            $attributes .= $this->attribute('data-'.$name, $value);
+            if (empty($value)) {
+                continue;
+            }
+            $attributes .= $this->attribute('data-' . $name, $value);
         }
+
         return trim($attributes);
     }
 
@@ -161,7 +165,7 @@ abstract class ComponentAbstract {
         if (is_bool($value)) {
             return "$name ";
         } else {
-            return "$name=\"" . htmlspecialchars(trim($value)). "\" ";
+            return "$name=\"" . htmlspecialchars(trim($value)) . '" ';
         }
     }
 }

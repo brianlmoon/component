@@ -12,6 +12,7 @@ phpunit.xml
 .php_cs
 .phpunit.result.cache
 .phpunit.cache
+.php-cs-fixer.cache
 
 # IDE project settings
 .project

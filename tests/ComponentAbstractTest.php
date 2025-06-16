@@ -1,9 +1,9 @@
-<?php 
+<?php
 
 namespace Moonspot\Component\Test;
 
-use PHPUnit\Framework\TestCase;
 use Moonspot\Component\ComponentAbstract;
+use PHPUnit\Framework\TestCase;
 
 class ComponentAbstractTest extends TestCase {
 
@@ -16,18 +16,18 @@ class ComponentAbstractTest extends TestCase {
             [
                 'id'   => 'mytest',
                 'data' => [
-                    'foo' => 'bar'
-                ]
+                    'foo' => 'bar',
+                ],
             ]
         );
         TestComponent::render(
             [],
             [
-                'id'   => 'mytest2',
+                'id'       => 'mytest2',
                 'disabled' => false,
-                'data' => [
-                    'foo' => 'bar'
-                ]
+                'data'     => [
+                    'foo' => 'bar',
+                ],
             ]
         );
         $html = ob_get_clean();
@@ -74,7 +74,7 @@ class TestComponent extends ComponentAbstract {
     public bool $disabled = true;
 
     public function setDefaults() {
-        $this->class .= " test";
+        $this->class .= ' test';
     }
 
     public function markup() {
