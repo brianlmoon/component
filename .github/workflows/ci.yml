@@ -1,4 +1,4 @@
-name: Testing Moonspot\ValueObjects
+name: Testing Moonspot\Component
 
 on: [push]
 
