@@ -34,9 +34,9 @@ abstract class ComponentAbstract {
     /**
      * Determines if the assets have been loaded or not
      *
-     * @var        bool
+     * @var        array
      */
-    protected static $assets_loaded = false;
+    protected static array $assets_loaded = [];
 
     /**
      * Helper static function for rendering a component
@@ -106,10 +106,11 @@ abstract class ComponentAbstract {
      * Loads the css and scripts if not already loaded
      */
     public static function loadAssets() {
-        if (!static::$assets_loaded) {
-            static::$assets_loaded = true;
-            static::css();
-            static::script();
+        $class = get_called_class();
+        if (empty(self::$assets_loaded[$class])) {
+            self::$assets_loaded[$class] = true;
+            $class::css();
+            $class::script();
         }
     }
 
@@ -138,13 +139,13 @@ abstract class ComponentAbstract {
             if ($name === 'data') {
                 continue;
             }
-            if (empty($this->$name)) {
+            if (empty($this->$name) && strlen((string)$this->$name) === 0) {
                 continue;
             }
             $attributes .= $this->attribute($name, $this->$name);
         }
         foreach ($this->data as $name => $value) {
-            if (empty($value)) {
+            if (empty($value) && strlen((string)$value) === 0) {
                 continue;
             }
             $attributes .= $this->attribute('data-' . $name, $value);
