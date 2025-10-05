@@ -4,7 +4,8 @@ A library for creating HTML components in PHP.
 
 Creating consitent HTML components is important for good user experience. This
 library aims to make creating those components easier. It is the result of work
-I have done for years on different projects.
+I have done for years on different projects. A prime reason for this library 
+and some of the techniques it uses is performance.
 
 ## Example
 
@@ -25,9 +26,13 @@ class TextInput extends ComponentAbstract {
     public int|null $maxlength = null;
     public int|null $size      = null;
 
+    // For other settings, define them as protected properties
+    protected string $label = '';
+
     // function where the markup is defined
     public function markup() {
         ?>
+        <label for="<?=htmlspecialchars($this->id)?>"><?=htmlspecialchars($this->label)?></label><br> 
         <input <?=$this->attributes()?> />
         <?php
     }
