@@ -2,9 +2,9 @@
 
 A library for creating HTML components in PHP.
 
-Creating consitent HTML components is important for good user UX. This library
-aims to make creating those components easier. It is based on similar work of
-mine for years on different projects.
+Creating consitent HTML components is important for good user experience. This
+library aims to make creating those components easier. It is the result of work
+I have done for years on different projects.
 
 ## Example
 
@@ -33,7 +33,8 @@ class TextInput extends ComponentAbstract {
     }
 
     // An inline style or a link tag to a css file can be used here.
-    // Either way, it will only be included once in the output.
+    // Either way, it will only be included once in the output. There
+    // is also a similar function named "script" for loading script tags.
     public static function css() {
         ?>
         <style>
