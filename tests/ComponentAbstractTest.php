@@ -73,11 +73,11 @@ class TestComponent extends ComponentAbstract {
 
     public bool $disabled = true;
 
-    public function setDefaults() {
+    public function setDefaults(): void {
         $this->class .= ' test';
     }
 
-    public function markup() {
+    public function markup(): void {
         ?>
         <div <?=$this->attributes()?>>
         </div>

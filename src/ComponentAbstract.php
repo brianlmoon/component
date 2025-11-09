@@ -44,7 +44,7 @@ abstract class ComponentAbstract {
      * @param      array  $settings    The settings
      * @param      array  $attributes  The attributes
      */
-    public static function render(array $settings = [], array $attributes = []) {
+    public static function render(array $settings = [], array $attributes = []): void {
         $class     = get_called_class();
         $component = new $class($settings, $attributes);
         static::loadAssets();
@@ -113,6 +113,13 @@ abstract class ComponentAbstract {
             $class::script();
         }
     }
+
+    /**
+     * Renders the markup for the component
+     *
+     * @return void
+     */
+    abstract function markup(): void;
 
     /**
      * Called once to load any CSS needed for the component
